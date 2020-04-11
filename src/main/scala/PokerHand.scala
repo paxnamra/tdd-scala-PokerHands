@@ -5,8 +5,9 @@ object PokerHand {
       .split(" ")
       .map { card =>
         card.toList match {
-          case List('J', _) => (11, 'J')
           case List('T', _) => (10, 'T')
+          case List('J', _) => (11, 'J')
+          case List('Q', _) => (12, 'Q')
           case List(figure, _) => (figure.toString.toInt, figure)
         }
       }
