@@ -1,14 +1,14 @@
 object PokerHand {
 
   def evaluate(hand: String): String = {
+    val figuresIndex: Map[Char, Int] = List('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q')
+      .zipWithIndex
+      .toMap
     val (_, maxChar) = hand
       .split(" ")
       .map { card =>
         card.toList match {
-          case List('T', _) => (10, 'T')
-          case List('J', _) => (11, 'J')
-          case List('Q', _) => (12, 'Q')
-          case List(figure, _) => (figure.toString.toInt, figure)
+          case List(figure, _) => (figuresIndex(figure), figure)
         }
       }
       .max
