@@ -1,13 +1,14 @@
 object PokerHand {
 
   def evaluate(hand: String): String = {
-    val max = hand
+    val (_, maxChar) = hand
       .split(" ")
       .map(_.toList)
       .map {
-        case List(figure, color) => figure.toString.toInt
+        case List('J', _) => (11, 'J')
+        case List(figure, color) => (figure.toString.toInt, figure)
       }
       .max
-    "high card : " + max
+    "high card : " + maxChar
   }
 }
