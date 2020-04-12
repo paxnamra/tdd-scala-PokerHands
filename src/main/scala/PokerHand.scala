@@ -1,7 +1,7 @@
 object PokerHand {
 
   def evaluate(hand: String): String = {
-    val figuresIndex: Map[Char, Int] = List('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K')
+    val figuresIndex: Map[Char, Int] = List('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
       .zipWithIndex
       .toMap
     val (_, maxChar) = hand
