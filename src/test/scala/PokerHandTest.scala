@@ -19,14 +19,21 @@ class PokerHandTest extends AnyWordSpec with Matchers {
     "pick the highest card T" in {
       PokerHand.evaluate("5M 4C 6S TS 2D") should equal("high card : T")
     }
+
     "pick the highest card Q" in {
       PokerHand.evaluate("5M 4C 6S QS 2D") should equal("high card : Q")
     }
+
     "pick the highest card K" in {
       PokerHand.evaluate("5M 4C 6S KS 2D") should equal("high card : K")
     }
+
     "pick the highest card A" in {
       PokerHand.evaluate("5M 4C 6S AS 2D") should equal("high card : A")
+    }
+
+    "pick pair of A" in {
+      PokerHand.evaluate("5M 4C 6S AS AD") should equal("pair of : A")
     }
   }
 }
