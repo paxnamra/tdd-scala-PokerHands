@@ -3,25 +3,29 @@ object PokerHand {
     .zipWithIndex
     .toMap
 
+  case class Card(figure: Char, power: Int)
+
   def evaluate(hand: String): String = {
-    val value: List[(Char, Int)] = hand
+    val value: List[(Int, Int, Char)] = hand
       .split(" ")
       .map { card =>
         card.toList match {
-          case List(figure, _) => (figuresIndex(figure), figure)
+          case List(figure, _) => Card(figure, figuresIndex(figure))
         }
       }
-      .groupBy(_._2)
-      .map(t => (t._1, t._2.length))
+      .groupBy(_.figure)
+      .map {
+        case (figure, cards) => (cards.size, cards.head.power, figure)
+      }
       .toList
+      .sorted(Ordering[(Int, Int, Char)].reverse)
       .sortBy(_._2)(Ordering[Int].reverse)
-
-    val (figure, occurrences) = value.head
+    
+    val (occurrences, _, figure) = value.head
     if (occurrences == 2) {
       "pair of : " + figure
     } else {
-      val (_, maxChar) = value.max
-      "high card : " + maxChar
+      "high card : " + figure
     }
   }
 }
